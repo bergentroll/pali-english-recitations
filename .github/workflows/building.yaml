@@ -12,23 +12,23 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container: bergentroll/pali-english-recitations-builder:latest
+    default:
+      if: env.TEST_UPLOADING != 'true'
     steps:
       - name: Actions checkout
         uses: actions/checkout@v3
+        if: true
       - name: Create MOC files
         run: |
           mkdir build/
-          echo 'noop' | tee build/file.pdf build/file.epub build/file.azw3
+          date | tee build/file.pdf build/file.epub build/file.azw3
         if: env.TEST_UPLOADING == 'true'
       - name: Build PDF
         run: make pdf2x
-        if: env.TEST_UPLOADING != 'true'
       - name: Build EPUB
         run: make epub
-        if: env.TEST_UPLOADING != 'true'
       - name: Build AZW3
         run: make azw3
-        if: env.TEST_UPLOADING != 'true'
       - name: Upload Release Asset
         uses: softprops/action-gh-release@v1
         with:
@@ -38,3 +38,4 @@ jobs:
             build/*.epub
             build/*.pdf
           fail_on_unmatched_files: true
+        if: true

@@ -12,7 +12,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container: bergentroll/pali-english-recitations-builder:latest
-    default:
+    defaults:
       if: env.TEST_UPLOADING != 'true'
     steps:
       - name: Actions checkout

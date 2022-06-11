@@ -5,7 +5,8 @@ name: Build documents
   push:
     branches:
       - main
-env: {}
+env:
+  TEST_UPLOADING: true
 
 jobs:
   build:

@@ -14,15 +14,24 @@ jobs:
     steps:
       - name: Actions checkout
         uses: actions/checkout@v3
+      - name: Create MOC files
+        run: |
+          mkdir build/
+          touch build/file.pdf build/file.epub build/file.azw3
+        if: env.TEST_UPLOADING == 'true'
       - name: Build PDF
         run: make pdf2x
+        if: env.TEST_UPLOADING != 'true'
       - name: Build EPUB
         run: make epub
+        if: env.TEST_UPLOADING != 'true'
       - name: Build AZW3
         run: make azw3
+        if: env.TEST_UPLOADING != 'true'
       - name: Upload Release Asset
         uses: softprops/action-gh-release@v1
         with:
+          tag_name: auto
           files: |
             'build/*.azw3'
             'build/*.epub'

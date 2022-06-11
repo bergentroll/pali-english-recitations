@@ -34,7 +34,7 @@ jobs:
         with:
           tag_name: auto
           files: |
-            'build/*.azw3'
-            'build/*.epub'
-            'build/*.pdf'
+            build/*.azw3
+            build/*.epub
+            build/*.pdf
           fail_on_unmatched_files: true

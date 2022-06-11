@@ -5,24 +5,14 @@ name: Build documents
   push:
     branches:
       - main
-env:
-  TEST_UPLOADING: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
     container: bergentroll/pali-english-recitations-builder:latest
-    defaults:
-      if: env.TEST_UPLOADING != 'true'
     steps:
       - name: Actions checkout
         uses: actions/checkout@v3
-        if: true
-      - name: Create MOC files
-        run: |
-          mkdir build/
-          date | tee build/file.pdf build/file.epub build/file.azw3
-        if: env.TEST_UPLOADING == 'true'
       - name: Build PDF
         run: make pdf2x
       - name: Build EPUB
@@ -38,4 +28,3 @@ jobs:
             build/*.epub
             build/*.pdf
           fail_on_unmatched_files: true
-        if: true

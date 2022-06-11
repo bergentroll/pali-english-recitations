@@ -21,7 +21,7 @@ jobs:
         run: make azw3
       - name: Delete backslash from filenames
         run: |
-          for i in build/*; do
+          for i in build/*\\*; do
             mv "$i" "$(echo "$i" | sed 's/\\//g')"
           done
       - name: Generate release tag

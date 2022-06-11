@@ -18,7 +18,7 @@ jobs:
       - name: Create MOC files
         run: |
           mkdir build/
-          touch build/file.pdf build/file.epub build/file.azw3
+          echo 'noop' | tee build/file.pdf build/file.epub build/file.azw3
         if: env.TEST_UPLOADING == 'true'
       - name: Build PDF
         run: make pdf2x

@@ -11,10 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     container: bergentroll/pali-english-recitations-builder:latest
     steps:
-      - name: install git
-        run: |
-          apt update
-          apt install -y git
       - name: Actions checkout
         uses: actions/checkout@v3
       - name: Check ref

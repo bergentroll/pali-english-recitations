@@ -17,9 +17,9 @@ jobs:
           fetch-depth: 0
       - name: TMP
         run: |
-          tree .
           apt update
           apt install -y tree
+          tree .
           tree .git
       - name: Check ref
         run: cat .git/refs/heads/main

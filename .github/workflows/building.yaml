@@ -13,6 +13,11 @@ jobs:
     steps:
       - name: Actions checkout
         uses: actions/checkout@v3
+      - name: TMP
+        run: |
+          apt update
+          apt install -y tree
+          tree .git
       - name: Check ref
         run: cat .git/refs/heads/main
       - name: Build PDF

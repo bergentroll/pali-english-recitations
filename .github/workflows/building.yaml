@@ -15,11 +15,16 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+          #- name: Stub ref file
+          #  run: |
+          #    mkdir -p .git/ref/
+          #    echo "$GITHUB_REF" > .git/ref/
       - name: TMP
         run: |
           apt update
-          apt install -y tree
-          tree .
+          apt install -y tree git
+          tree -a .
+          git status
           tree .git
       - name: Check ref
         run: cat .git/refs/heads/main
